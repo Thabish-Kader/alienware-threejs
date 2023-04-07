@@ -8,6 +8,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
  */
 // Debug
 const gui = new dat.GUI();
+const debugObj = {};
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -15,7 +16,7 @@ const canvas = document.querySelector("canvas.webgl");
 const scene = new THREE.Scene();
 
 /**
- * Textures
+ * Environment
  */
 const cubeTextureLoader = new THREE.CubeTextureLoader();
 const environmentMap = cubeTextureLoader.load([
@@ -26,7 +27,7 @@ const environmentMap = cubeTextureLoader.load([
 	"./environmentMaps/0/pz.jpg",
 	"./environmentMaps/0/nz.jpg",
 ]);
-scene.background = environmentMap;
+// scene.background = environmentMap;
 
 /*
  Update all materilas 
@@ -38,9 +39,17 @@ const updateAllMaterials = () => {
 			child.material instanceof THREE.MeshStandardMaterial
 		) {
 			child.material.envMap = environmentMap;
+			child.material.envMapIntensity = debugObj.envMapIntensity;
 		}
 	});
 };
+
+debugObj.envMapIntensity = 2.5;
+gui.add(debugObj, "envMapIntensity")
+	.min(0)
+	.max(10)
+	.step(0.001)
+	.onChange(updateAllMaterials);
 
 /* 
 Model
@@ -55,34 +64,34 @@ gltfLoader.load("./laptop/scene.gltf", (gltf) => {
  * Lights
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight("#ffffff", 0.5);
-gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
-scene.add(ambientLight);
+// const ambientLight = new THREE.AmbientLight("#ffffff", 0.5);
+// gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
+// scene.add(ambientLight);
 
 // Directional light
-const directionalLight = new THREE.DirectionalLight("#ffffff", 0.5);
-directionalLight.position.set(4, 5, -2);
-gui.add(directionalLight, "intensity")
-	.min(0)
-	.max(5)
-	.step(0.001)
-	.name("directionalLightIntensity");
-gui.add(directionalLight.position, "x")
-	.min(-5)
-	.max(5)
-	.step(0.001)
-	.name("lightX");
-gui.add(directionalLight.position, "y")
-	.min(-5)
-	.max(5)
-	.step(0.001)
-	.name("lightY");
-gui.add(directionalLight.position, "z")
-	.min(-5)
-	.max(5)
-	.step(0.001)
-	.name("lightZ");
-scene.add(directionalLight);
+// const directionalLight = new THREE.DirectionalLight("#ffffff", 0.5);
+// directionalLight.position.set(4, 5, -2);
+// gui.add(directionalLight, "intensity")
+// 	.min(0)
+// 	.max(5)
+// 	.step(0.001)
+// 	.name("directionalLightIntensity");
+// gui.add(directionalLight.position, "x")
+// 	.min(-5)
+// 	.max(5)
+// 	.step(0.001)
+// 	.name("lightX");
+// gui.add(directionalLight.position, "y")
+// 	.min(-5)
+// 	.max(5)
+// 	.step(0.001)
+// 	.name("lightY");
+// gui.add(directionalLight.position, "z")
+// 	.min(-5)
+// 	.max(5)
+// 	.step(0.001)
+// 	.name("lightZ");
+// scene.add(directionalLight);
 
 /**
  * Sizes
@@ -148,10 +157,12 @@ controls.enableDamping = true;
  */
 const renderer = new THREE.WebGLRenderer({
 	canvas: canvas,
+	alpha: true,
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.useLegacyLights = true;
+// renderer.useLegacyLights = true;
+
 /**
  * Animate
  */

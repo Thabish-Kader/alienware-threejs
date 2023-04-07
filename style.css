@@ -14,3 +14,20 @@ body {
 	left: 0;
 	outline: none;
 }
+canvas {
+	background-image: linear-gradient(
+		to right top,
+		#151515,
+		#191919,
+		#1c1c1c,
+		#1f1f1f,
+		#232323,
+		#232323,
+		#222222,
+		#222222,
+		#1e1e1e,
+		#1a1a1a,
+		#161616,
+		#121212
+	);
+}
