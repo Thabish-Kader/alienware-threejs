@@ -14,6 +14,7 @@ const debugObj = {};
 const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
+// group
 
 /**
  * Environment
@@ -57,8 +58,17 @@ Model
  */
 const gltfLoader = new GLTFLoader();
 gltfLoader.load("./laptop/scene.gltf", (gltf) => {
-	scene.add(gltf.scene);
+	const laptop = gltf.scene;
+	laptop.position.set(0, 0.5, 0);
+
+	scene.add(laptop);
 	updateAllMaterials();
+	const box = new THREE.Box3().setFromObject(gltf.scene);
+	const center = box.getCenter(new THREE.Vector3());
+
+	gltf.scene.position.x += gltf.scene.position.x - center.x;
+	gltf.scene.position.y += gltf.scene.position.y - center.y;
+	gltf.scene.position.z += gltf.scene.position.z - center.z;
 });
 
 /**
