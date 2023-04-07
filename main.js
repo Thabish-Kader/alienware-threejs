@@ -34,6 +34,7 @@ environmentMap.encoding = THREE.sRGBEncoding;
 /*
  Update all materilas 
  */
+const keyMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
 const updateAllMaterials = () => {
 	scene.traverse((child) => {
 		if (
@@ -43,6 +44,8 @@ const updateAllMaterials = () => {
 			child.material.envMap = environmentMap;
 			child.material.envMapIntensity = debugObj.envMapIntensity;
 		}
+		if (child.name === "lightkeys") {
+		}
 	});
 };
 
@@ -51,13 +54,14 @@ gui.add(debugObj, "envMapIntensity")
 	.min(0)
 	.max(10)
 	.step(0.001)
+	.setValue(1.75)
 	.onChange(updateAllMaterials);
 
 /* 
 Model
  */
 const gltfLoader = new GLTFLoader();
-gltfLoader.load("./laptop/scene.gltf", (gltf) => {
+gltfLoader.load("./laptop2.glb", (gltf) => {
 	const laptop = gltf.scene;
 	laptop.position.set(0, 0.5, 0);
 
