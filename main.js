@@ -24,8 +24,7 @@ Model
  */
 const gltfLoader = new GLTFLoader();
 gltfLoader.load("./laptop/scene.gltf", (gltf) => {
-	gltf.scene.scale.set(1, 1, 1);
-	scene.add(gltf.scene.children[0]);
+	scene.add(gltf.scene);
 });
 
 /**
@@ -37,13 +36,29 @@ gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
 scene.add(ambientLight);
 
 // Directional light
-const moonLight = new THREE.DirectionalLight("#ffffff", 0.5);
-moonLight.position.set(4, 5, -2);
-gui.add(moonLight, "intensity").min(0).max(1).step(0.001);
-gui.add(moonLight.position, "x").min(-5).max(5).step(0.001);
-gui.add(moonLight.position, "y").min(-5).max(5).step(0.001);
-gui.add(moonLight.position, "z").min(-5).max(5).step(0.001);
-scene.add(moonLight);
+const directionalLight = new THREE.DirectionalLight("#ffffff", 0.5);
+directionalLight.position.set(4, 5, -2);
+gui.add(directionalLight, "intensity")
+	.min(0)
+	.max(5)
+	.step(0.001)
+	.name("directionalLightIntensity");
+gui.add(directionalLight.position, "x")
+	.min(-5)
+	.max(5)
+	.step(0.001)
+	.name("lightX");
+gui.add(directionalLight.position, "y")
+	.min(-5)
+	.max(5)
+	.step(0.001)
+	.name("lightY");
+gui.add(directionalLight.position, "z")
+	.min(-5)
+	.max(5)
+	.step(0.001)
+	.name("lightZ");
+scene.add(directionalLight);
 
 /**
  * Sizes
@@ -77,9 +92,27 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	100
 );
-camera.position.x = 4;
-camera.position.y = 2;
-camera.position.z = 5;
+// camera.position.x = 2;
+// camera.position.y = 2;
+// camera.position.z = -1.6;
+gui.add(camera.position, "x")
+	.min(-50)
+	.max(50)
+	.step(0.001)
+	.setValue(2)
+	.name("cameraX");
+gui.add(camera.position, "y")
+	.min(-50)
+	.max(50)
+	.step(0.001)
+	.setValue(2)
+	.name("cameraY");
+gui.add(camera.position, "z")
+	.min(-50)
+	.max(50)
+	.step(0.001)
+	.setValue(-1.6)
+	.name("cameraZ");
 scene.add(camera);
 
 // Controls
@@ -94,7 +127,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
+renderer.useLegacyLights = true;
 /**
  * Animate
  */
