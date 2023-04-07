@@ -17,7 +17,30 @@ const scene = new THREE.Scene();
 /**
  * Textures
  */
-const textureLoader = new THREE.TextureLoader();
+const cubeTextureLoader = new THREE.CubeTextureLoader();
+const environmentMap = cubeTextureLoader.load([
+	"./environmentMaps/0/px.jpg",
+	"./environmentMaps/0/nx.jpg",
+	"./environmentMaps/0/py.jpg",
+	"./environmentMaps/0/ny.jpg",
+	"./environmentMaps/0/pz.jpg",
+	"./environmentMaps/0/nz.jpg",
+]);
+scene.background = environmentMap;
+
+/*
+ Update all materilas 
+ */
+const updateAllMaterials = () => {
+	scene.traverse((child) => {
+		if (
+			child instanceof THREE.Mesh &&
+			child.material instanceof THREE.MeshStandardMaterial
+		) {
+			child.material.envMap = environmentMap;
+		}
+	});
+};
 
 /* 
 Model
@@ -25,6 +48,7 @@ Model
 const gltfLoader = new GLTFLoader();
 gltfLoader.load("./laptop/scene.gltf", (gltf) => {
 	scene.add(gltf.scene);
+	updateAllMaterials();
 });
 
 /**
