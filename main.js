@@ -45,6 +45,7 @@ const updateAllMaterials = () => {
 			child.material.envMapIntensity = debugObj.envMapIntensity;
 		}
 		if (child.name === "lightkeys") {
+			// TODO: have glowing keyboards --> possibley usieng bloom composer
 		}
 	});
 };
@@ -67,6 +68,8 @@ gltfLoader.load("./laptop2.glb", (gltf) => {
 
 	scene.add(laptop);
 	updateAllMaterials();
+
+	// center the model to the origin
 	const box = new THREE.Box3().setFromObject(gltf.scene);
 	const center = box.getCenter(new THREE.Vector3());
 
@@ -74,39 +77,6 @@ gltfLoader.load("./laptop2.glb", (gltf) => {
 	gltf.scene.position.y += gltf.scene.position.y - center.y;
 	gltf.scene.position.z += gltf.scene.position.z - center.z;
 });
-
-/**
- * Lights
- */
-// Ambient light
-// const ambientLight = new THREE.AmbientLight("#ffffff", 0.5);
-// gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
-// scene.add(ambientLight);
-
-// Directional light
-// const directionalLight = new THREE.DirectionalLight("#ffffff", 0.5);
-// directionalLight.position.set(4, 5, -2);
-// gui.add(directionalLight, "intensity")
-// 	.min(0)
-// 	.max(5)
-// 	.step(0.001)
-// 	.name("directionalLightIntensity");
-// gui.add(directionalLight.position, "x")
-// 	.min(-5)
-// 	.max(5)
-// 	.step(0.001)
-// 	.name("lightX");
-// gui.add(directionalLight.position, "y")
-// 	.min(-5)
-// 	.max(5)
-// 	.step(0.001)
-// 	.name("lightY");
-// gui.add(directionalLight.position, "z")
-// 	.min(-5)
-// 	.max(5)
-// 	.step(0.001)
-// 	.name("lightZ");
-// scene.add(directionalLight);
 
 /**
  * Sizes
