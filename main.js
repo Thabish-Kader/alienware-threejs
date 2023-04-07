@@ -28,6 +28,7 @@ const environmentMap = cubeTextureLoader.load([
 	"./environmentMaps/0/nz.jpg",
 ]);
 // scene.background = environmentMap;
+environmentMap.encoding = THREE.sRGBEncoding;
 
 /*
  Update all materilas 
@@ -161,8 +162,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-// renderer.useLegacyLights = true;
-
+renderer.outputEncoding = THREE.sRGBEncoding;
 /**
  * Animate
  */
