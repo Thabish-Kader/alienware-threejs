@@ -2,7 +2,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "lil-gui";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 /**
  * Base
  */
@@ -136,6 +138,7 @@ scene.add(camera);
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
+controls.enabled = false;
 
 /**
  * Renderer
@@ -166,6 +169,65 @@ const tick = () => {
 };
 
 tick();
+
+const scrollAnimation = () => {
+	const cameraPostion = camera.position;
+	const tl = gsap.timeline();
+	// 1st section
+	tl.to(cameraPostion, {
+		x: 1.41,
+		y: 0.78,
+		z: -1.42,
+		scrollTrigger: {
+			trigger: "#section-two",
+			start: "top bottom",
+			end: "top top",
+			scrub: true,
+			immediateRender: false,
+		},
+	})
+		// 2nd section
+		.to(cameraPostion, {
+			x: -1.83,
+			y: -0.3,
+			z: 0.22,
+			scrollTrigger: {
+				trigger: "#section-three",
+				start: "top bottom",
+				end: "top top",
+				scrub: true,
+				immediateRender: false,
+			},
+		})
+		// third section
+		.to(cameraPostion, {
+			x: -0.19,
+			y: 0.99,
+			z: 2.7,
+			scrollTrigger: {
+				trigger: "#section-four",
+				start: "top bottom",
+				end: "top top",
+				scrub: true,
+				immediateRender: false,
+			},
+		})
+		// fourth section
+		.to(cameraPostion, {
+			x: 0.07,
+			y: 1.4,
+			z: -1.8,
+			scrollTrigger: {
+				trigger: "#section-five",
+				start: "top bottom",
+				end: "top top",
+				scrub: true,
+				immediateRender: false,
+			},
+		});
+};
+
+scrollAnimation();
 
 /* 
 Postion 1 : x:1.41, y:0.78, z:-1.42
