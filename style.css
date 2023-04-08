@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -19,8 +23,23 @@ body {
 section {
 	height: 100vh;
 	width: 100vw;
-	z-index: 50;
+	/* z-index: 50; */
 }
 canvas {
-	pointer-events: none;
+	/* pointer-events: none; */
+	z-index: 50;
+}
+
+.hero-btn {
+	color: #fff;
+	border: 1px solid rgb(216, 2, 134);
+
+	box-shadow: inset 0 0 0 0 #d80286;
+	-webkit-transition: ease-out 0.4s;
+	-moz-transition: ease-out 0.4s;
+	transition: ease-out 0.7s;
+}
+
+.hero-btn:hover {
+	box-shadow: inset 0 0 0 50px #d80286;
 }

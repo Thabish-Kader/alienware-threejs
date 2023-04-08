@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
  */
 // Debug
 const gui = new dat.GUI();
+gui.close();
 const debugObj = {};
 
 // Canvas
@@ -30,7 +31,7 @@ const environmentMap = cubeTextureLoader.load([
 	"./environmentMaps/0/pz.jpg",
 	"./environmentMaps/0/nz.jpg",
 ]);
-// scene.background = environmentMap;
+
 environmentMap.encoding = THREE.sRGBEncoding;
 
 /*
@@ -63,10 +64,13 @@ gui.add(debugObj, "envMapIntensity")
 /* 
 Model
  */
+let laptop = null;
 const gltfLoader = new GLTFLoader();
 gltfLoader.load("./laptop2.glb", (gltf) => {
-	const laptop = gltf.scene;
-	laptop.position.set(0, 0.5, 0);
+	laptop = gltf.scene;
+	console.log(laptop);
+	laptop.position.set(0, -0.7, -1);
+	laptop.rotation.set(0, -Math.PI * 0.5, 0);
 
 	scene.add(laptop);
 	updateAllMaterials();
@@ -75,9 +79,9 @@ gltfLoader.load("./laptop2.glb", (gltf) => {
 	const box = new THREE.Box3().setFromObject(gltf.scene);
 	const center = box.getCenter(new THREE.Vector3());
 
-	gltf.scene.position.x += gltf.scene.position.x - center.x;
-	gltf.scene.position.y += gltf.scene.position.y - center.y;
-	gltf.scene.position.z += gltf.scene.position.z - center.z;
+	// gltf.scene.position.x += gltf.scene.position.x - center.x;
+	// gltf.scene.position.y += gltf.scene.position.y - center.y;
+	// gltf.scene.position.z += gltf.scene.position.z - center.z;
 });
 
 /**
@@ -107,7 +111,7 @@ window.addEventListener("resize", () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(
-	75,
+	50,
 	sizes.width / sizes.height,
 	0.1,
 	100
@@ -118,27 +122,27 @@ const camera = new THREE.PerspectiveCamera(
 gui.add(camera.position, "x")
 	.min(-50)
 	.max(50)
-	.step(0.001)
-	.setValue(2)
+	.step(0.0001)
+	.setValue(1.825)
 	.name("cameraX");
 gui.add(camera.position, "y")
 	.min(-50)
 	.max(50)
-	.step(0.001)
-	.setValue(2)
+	.step(0.0001)
+	.setValue(0.61)
 	.name("cameraY");
 gui.add(camera.position, "z")
 	.min(-50)
 	.max(50)
-	.step(0.001)
-	.setValue(-1.6)
+	.step(0.0001)
+	.setValue(-2.41)
 	.name("cameraZ");
 scene.add(camera);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.enabled = false;
+controls.enabled = true;
 
 /**
  * Renderer
@@ -175,9 +179,9 @@ const scrollAnimation = () => {
 	const tl = gsap.timeline();
 	// 1st section
 	tl.to(cameraPostion, {
-		x: 1.41,
-		y: 0.78,
-		z: -1.42,
+		x: -1.83,
+		y: 0.4,
+		z: -2.44,
 		scrollTrigger: {
 			trigger: "#section-two",
 			start: "top bottom",

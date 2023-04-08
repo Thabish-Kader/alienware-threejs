@@ -10,11 +10,11 @@
 	<body>
 		<canvas class="webgl"></canvas>
 		<header>
-			<div>
+			<div class="flex justify-between py-10 px-20  items-center">
 				<!-- logo -->
-				<h1>Alienware</h1>
+				<h1 class="text-5xl font-bold text-transparent bg-clip-text   bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500">Alienware</h1>
 				<!-- links -->
-				<div>
+				<div class="flex justify-between space-x-5 text-white/60">
 					<a href="#section-two">Learn More</a>
 					<a href="#section-three">Whats New</a>
 					<a href="#section-four">Premium</a>
@@ -22,8 +22,12 @@
 				</div>
 			</div>
 		</header>
-		<section id="section-one">
-
+		<section id="section-one" class="relative">
+			<div class="flex flex-col p-10  absolute top-28 left-12 ">
+				<h1 class="font-extrabold text-5xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">Dominate The Game</h1>
+				<p class="text-justify max-w-lg text-sm mt-5 text-gray-400">Introducing the new [Brand Name] gaming laptop - the only device that can keep up with your lightning-fast reflexes and slow-loading internet. With a processor so powerful, you'll have time to make a sandwich between levels. Its graphics card is so advanced, it can render the sweat on your character's brow in stunning detail. And the best part? It comes with a built-in cooling system, so your laptop won't melt into a puddle during your all-night gaming marathons. Get ready to level up - and maybe even get some actual exercise while waiting for your game to load.</p>
+				<button class="hero-btn p-2 rounded-md mt-3">Explore</button>
+			</div>
 		</section>
 		<section id="section-two"></section>
 		<section id="section-three"></section>
