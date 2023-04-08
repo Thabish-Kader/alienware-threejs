@@ -26,8 +26,8 @@ section {
 	/* z-index: 50; */
 }
 canvas {
-	/* pointer-events: none; */
-	z-index: 50;
+	pointer-events: none;
+	/* z-index: 50; */
 }
 
 .hero-btn {
