@@ -71,14 +71,6 @@ gltfLoader.load("./laptop2.glb", (gltf) => {
 	scene.add(laptop);
 	updateAllMaterials();
 	scrollAnimation();
-
-	// center the model to the origin
-	// const box = new THREE.Box3().setFromObject(gltf.scene);
-	// const center = box.getCenter(new THREE.Vector3());
-
-	// gltf.scene.position.x += gltf.scene.position.x - center.x;
-	// gltf.scene.position.y += gltf.scene.position.y - center.y;
-	// gltf.scene.position.z += gltf.scene.position.z - center.z;
 });
 
 /**
@@ -139,7 +131,7 @@ scene.add(camera);
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.enabled = true;
+controls.enabled = false;
 
 /**
  * Renderer
