@@ -37,7 +37,7 @@ environmentMap.encoding = THREE.sRGBEncoding;
 /*
  Update all materilas 
  */
-const keyMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
 const updateAllMaterials = () => {
 	scene.traverse((child) => {
 		if (
@@ -46,9 +46,6 @@ const updateAllMaterials = () => {
 		) {
 			child.material.envMap = environmentMap;
 			child.material.envMapIntensity = debugObj.envMapIntensity;
-		}
-		if (child.name === "lightkeys") {
-			// TODO: have glowing keyboards --> possibley usieng bloom composer
 		}
 	});
 };
@@ -68,16 +65,16 @@ let laptop = null;
 const gltfLoader = new GLTFLoader();
 gltfLoader.load("./laptop2.glb", (gltf) => {
 	laptop = gltf.scene;
-	console.log(laptop);
 	laptop.position.set(0, -0.7, -1);
 	laptop.rotation.set(0, -Math.PI * 0.5, 0);
 
 	scene.add(laptop);
 	updateAllMaterials();
+	scrollAnimation();
 
 	// center the model to the origin
-	const box = new THREE.Box3().setFromObject(gltf.scene);
-	const center = box.getCenter(new THREE.Vector3());
+	// const box = new THREE.Box3().setFromObject(gltf.scene);
+	// const center = box.getCenter(new THREE.Vector3());
 
 	// gltf.scene.position.x += gltf.scene.position.x - center.x;
 	// gltf.scene.position.y += gltf.scene.position.y - center.y;
@@ -154,6 +151,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputEncoding = THREE.sRGBEncoding;
+
 /**
  * Animate
  */
@@ -170,18 +168,19 @@ const tick = () => {
 
 	// Call tick again on the next frame
 	window.requestAnimationFrame(tick);
+	console.log(camera.position);
 };
 
 tick();
 
+const cameraPostion = camera.position;
 const scrollAnimation = () => {
-	const cameraPostion = camera.position;
 	const tl = gsap.timeline();
-	// 1st section
+	// PREMIUM BUILD section
 	tl.to(cameraPostion, {
-		x: -1.83,
-		y: 0.4,
-		z: -2.44,
+		x: 0.18,
+		y: 0.04,
+		z: 1.95,
 		scrollTrigger: {
 			trigger: "#section-two",
 			start: "top bottom",
@@ -189,53 +188,44 @@ const scrollAnimation = () => {
 			scrub: true,
 			immediateRender: false,
 		},
-	})
-		// 2nd section
-		.to(cameraPostion, {
-			x: -1.83,
-			y: -0.3,
-			z: 0.22,
-			scrollTrigger: {
-				trigger: "#section-three",
-				start: "top bottom",
-				end: "top top",
-				scrub: true,
-				immediateRender: false,
-			},
-		})
-		// third section
-		.to(cameraPostion, {
-			x: -0.19,
-			y: 0.99,
-			z: 2.7,
-			scrollTrigger: {
-				trigger: "#section-four",
-				start: "top bottom",
-				end: "top top",
-				scrub: true,
-				immediateRender: false,
-			},
-		})
-		// fourth section
-		.to(cameraPostion, {
-			x: 0.07,
-			y: 1.4,
-			z: -1.8,
-			scrollTrigger: {
-				trigger: "#section-five",
-				start: "top bottom",
-				end: "top top",
-				scrub: true,
-				immediateRender: false,
-			},
-		});
+	});
+
+	tl.to(laptop.position, {
+		x: 0,
+		y: -0.85,
+		z: -1,
+		scrollTrigger: {
+			trigger: "#section-two",
+			start: "top bottom",
+			end: "top top",
+			scrub: true,
+			immediateRender: false,
+		},
+	});
+
+	tl.to(cameraPostion, {
+		x: 0.08,
+		y: 2.38,
+		z: 0,
+		scrollTrigger: {
+			trigger: "#section-three",
+			start: "top bottom",
+			end: "top top",
+			scrub: true,
+			immediateRender: false,
+		},
+	});
+	// BUY NOW section
+	tl.to(cameraPostion, {
+		x: 2.246,
+		y: 0.5,
+		z: 0,
+		scrollTrigger: {
+			trigger: "#section-four",
+			start: "top bottom",
+			end: "top top",
+			scrub: true,
+			immediateRender: false,
+		},
+	});
 };
-
-scrollAnimation();
-
-/* 
-Postion 1 : x:1.41, y:0.78, z:-1.42
-postion 2 : x:-1.83, y:-0.3, z:0.22
-postion 3 : x:-0.19, y:0.99, z:2.7
-postion 4 : x:0.07, y:1.4, z:-1.8
-*/
