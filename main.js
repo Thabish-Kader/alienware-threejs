@@ -16,6 +16,8 @@ const debugObj = {};
 // dom elments
 const canvas = document.querySelector("canvas.webgl");
 const exploreBtn = document.querySelector(".explore-btn");
+const buyBtn = document.querySelector(".buy-btn");
+const closeBtn = document.querySelector("#close-btn");
 // Scene
 const scene = new THREE.Scene();
 // group
@@ -244,13 +246,70 @@ const exploreAnimation = () => {
 			"#explore-wrapper",
 			{ opacity: 0, duration: 1.5, ease: "power4.out" },
 			"-=2.5"
+		)
+		.to(
+			"#close-btn",
+			{ opacity: 1, duration: 1.5, ease: "power4.out" },
+			"-=2.5"
 		);
 };
 
 // Close button
-exploreBtn.addEventListener("click", () => {
-	canvas.style.pointerEvents = "all";
-	canvas.style.zIndex = "1";
-	exploreAnimation();
-	controls.enabled = true;
+closeBtn.addEventListener("click", () => {
+	canvas.style.pointerEvents = "none";
+	canvas.style.zIndex = "0";
+	closeAnimation();
+	controls.enabled = false;
 });
+
+const closeAnimation = () => {
+	const closeTl = gsap.timeline();
+
+	closeTl
+		.to(laptop.position, {
+			x: 1,
+			y: -0.7,
+			z: -1,
+			duration: 2.5,
+		})
+		.to(
+			"#explore-wrapper",
+			{ opacity: 1, duration: 1.5, ease: "power4.out" },
+			"-=2.5"
+		)
+		.to(
+			"#close-btn",
+			{ opacity: 0, duration: 1.5, ease: "power4.out" },
+			"-=2.5"
+		);
+};
+
+// Buy button
+buyBtn.addEventListener("click", () => {
+	buyAnimation();
+});
+
+const buyAnimation = () => {
+	const buyTl = gsap.timeline();
+
+	buyTl
+		.to(laptop.position, {
+			x: 0,
+			y: -0.7,
+			z: -0.5,
+			duration: 2,
+		})
+		.to(
+			laptop.rotation,
+			{
+				y: Math.PI,
+				duration: 5,
+			},
+			"-=2"
+		)
+		.to(
+			"#explore-wrapper",
+			{ opacity: 0, duration: 1.5, ease: "power4.out" },
+			"-=2.5"
+		);
+};
