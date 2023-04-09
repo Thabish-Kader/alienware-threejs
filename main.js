@@ -18,6 +18,7 @@ const canvas = document.querySelector("canvas.webgl");
 const exploreBtn = document.querySelector(".explore-btn");
 const buyBtn = document.querySelector(".buy-btn");
 const closeBtn = document.querySelector("#close-btn");
+const meme = document.querySelector("#meme");
 // Scene
 const scene = new THREE.Scene();
 // group
@@ -285,8 +286,11 @@ const closeAnimation = () => {
 };
 
 // Buy button
+const audio = new Audio("/bck.mp3");
 buyBtn.addEventListener("click", () => {
+	meme.style.zIndex = "1";
 	buyAnimation();
+	audio.play();
 });
 
 const buyAnimation = () => {
@@ -311,5 +315,9 @@ const buyAnimation = () => {
 			"#explore-wrapper",
 			{ opacity: 0, duration: 1.5, ease: "power4.out" },
 			"-=2.5"
-		);
+		)
+		.to("#meme", {
+			opacity: 1,
+			duration: 7,
+		});
 };
