@@ -63,7 +63,6 @@ gltfLoader.load("./laptop2.glb", (gltf) => {
 	laptop = gltf.scene;
 	laptop.position.set(0, -0.7, -1);
 	laptop.rotation.set(0, -Math.PI * 0.5, 0);
-
 	scene.add(laptop);
 	updateAllMaterials();
 	scrollAnimation();
