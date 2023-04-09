@@ -28,12 +28,12 @@ const scene = new THREE.Scene();
  */
 const cubeTextureLoader = new THREE.CubeTextureLoader();
 const environmentMap = cubeTextureLoader.load([
-	"./environmentMaps/0/px.jpg",
-	"./environmentMaps/0/nx.jpg",
-	"./environmentMaps/0/py.jpg",
-	"./environmentMaps/0/ny.jpg",
-	"./environmentMaps/0/pz.jpg",
-	"./environmentMaps/0/nz.jpg",
+	"./environmentMaps/px.jpg",
+	"./environmentMaps/nx.jpg",
+	"./environmentMaps/py.jpg",
+	"./environmentMaps/ny.jpg",
+	"./environmentMaps/pz.jpg",
+	"./environmentMaps/nz.jpg",
 ]);
 
 environmentMap.encoding = THREE.sRGBEncoding;
