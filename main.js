@@ -13,8 +13,9 @@ const gui = new dat.GUI();
 gui.close();
 const debugObj = {};
 
-// Canvas
+// dom elments
 const canvas = document.querySelector("canvas.webgl");
+const exploreBtn = document.querySelector(".explore-btn");
 // Scene
 const scene = new THREE.Scene();
 // group
@@ -160,7 +161,6 @@ const tick = () => {
 
 	// Call tick again on the next frame
 	window.requestAnimationFrame(tick);
-	console.log(camera.position);
 };
 
 tick();
@@ -221,3 +221,36 @@ const scrollAnimation = () => {
 		},
 	});
 };
+
+// Explore button
+exploreBtn.addEventListener("click", () => {
+	canvas.style.pointerEvents = "all";
+	canvas.style.zIndex = "1";
+	exploreAnimation();
+	controls.enabled = true;
+});
+
+const exploreAnimation = () => {
+	const exploreTl = gsap.timeline();
+
+	exploreTl
+		.to(laptop.position, {
+			x: 0,
+			y: -0.7,
+			z: -0.5,
+			duration: 2.5,
+		})
+		.to(
+			"#explore-wrapper",
+			{ opacity: 0, duration: 1.5, ease: "power4.out" },
+			"-=2.5"
+		);
+};
+
+// Close button
+exploreBtn.addEventListener("click", () => {
+	canvas.style.pointerEvents = "all";
+	canvas.style.zIndex = "1";
+	exploreAnimation();
+	controls.enabled = true;
+});
