@@ -197,7 +197,24 @@ const scrollAnimation = () => {
 				immediateRender: false,
 			},
 		})
-
+		.fromTo(
+			"#section-two",
+			{ right: "-100%", opacity: 0 },
+			{
+				left: "0%",
+				opacity: 1,
+				duration: 1,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: "#section-two",
+					start: "top bottom",
+					end: "top top",
+					scrub: true,
+					immediateRender: false,
+				},
+			}
+		)
+		// Next Gen section
 		.to(cameraPostion, {
 			x: 0.08,
 			y: 2.38,
@@ -210,6 +227,23 @@ const scrollAnimation = () => {
 				immediateRender: false,
 			},
 		})
+		.fromTo(
+			"#section-three",
+			{ left: "-100%", opacity: 0 },
+			{
+				left: "0%",
+				opacity: 1,
+				duration: 1,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: "#section-three",
+					start: "top bottom",
+					end: "top top",
+					scrub: true,
+					immediateRender: false,
+				},
+			}
+		)
 		// BUY NOW section
 		.to(cameraPostion, {
 			x: 2.246,
@@ -222,7 +256,24 @@ const scrollAnimation = () => {
 				scrub: true,
 				immediateRender: false,
 			},
-		});
+		})
+		.fromTo(
+			"#section-four",
+			{ left: "-100%", opacity: 0 },
+			{
+				left: "0%",
+				opacity: 1,
+				duration: 1,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: "#section-four",
+					start: "top bottom",
+					end: "top top",
+					scrub: true,
+					immediateRender: false,
+				},
+			}
+		);
 };
 
 // Explore button
