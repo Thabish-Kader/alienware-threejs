@@ -5,13 +5,13 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+
 /**
  * Base
  */
 // Debug
 const gui = new dat.GUI();
 gui.close();
-const debugObj = {};
 
 // dom elments
 const canvas = document.querySelector("canvas.webgl");
@@ -49,18 +49,10 @@ const updateAllMaterials = () => {
 			child.material instanceof THREE.MeshStandardMaterial
 		) {
 			child.material.envMap = environmentMap;
-			child.material.envMapIntensity = debugObj.envMapIntensity;
+			child.material.envMapIntensity = 1.75;
 		}
 	});
 };
-
-debugObj.envMapIntensity = 2.5;
-gui.add(debugObj, "envMapIntensity")
-	.min(0)
-	.max(10)
-	.step(0.001)
-	.setValue(1.75)
-	.onChange(updateAllMaterials);
 
 /* 
 Model
@@ -109,9 +101,6 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	100
 );
-// camera.position.x = 2;
-// camera.position.y = 2;
-// camera.position.z = -1.6;
 gui.add(camera.position, "x")
 	.min(-50)
 	.max(50)
@@ -153,7 +142,7 @@ renderer.outputEncoding = THREE.sRGBEncoding;
  */
 const clock = new THREE.Clock();
 
-const tick = () => {
+const animate = () => {
 	const elapsedTime = clock.getElapsedTime();
 
 	// Update controls
@@ -163,10 +152,10 @@ const tick = () => {
 	renderer.render(scene, camera);
 
 	// Call tick again on the next frame
-	window.requestAnimationFrame(tick);
+	window.requestAnimationFrame(animate);
 };
 
-tick();
+animate();
 
 const cameraPostion = camera.position;
 const scrollAnimation = () => {
