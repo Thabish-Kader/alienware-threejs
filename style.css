@@ -24,6 +24,9 @@ section {
 	height: 100vh;
 	width: 100vw;
 }
+#section-two {
+	opacity: 0;
+}
 .webgl {
 	pointer-events: none;
 }

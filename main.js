@@ -183,46 +183,46 @@ const scrollAnimation = () => {
 			scrub: true,
 			immediateRender: false,
 		},
-	});
+	})
 
-	tl.to(laptop.position, {
-		x: 0,
-		y: -0.85,
-		z: -1,
-		scrollTrigger: {
-			trigger: "#section-two",
-			start: "top bottom",
-			end: "top top",
-			scrub: true,
-			immediateRender: false,
-		},
-	});
+		.to(laptop.position, {
+			x: 0,
+			y: -0.85,
+			z: -1,
+			scrollTrigger: {
+				trigger: "#section-two",
+				start: "top bottom",
+				end: "top top",
+				scrub: true,
+				immediateRender: false,
+			},
+		})
 
-	tl.to(cameraPostion, {
-		x: 0.08,
-		y: 2.38,
-		z: 0,
-		scrollTrigger: {
-			trigger: "#section-three",
-			start: "top bottom",
-			end: "top top",
-			scrub: true,
-			immediateRender: false,
-		},
-	});
-	// BUY NOW section
-	tl.to(cameraPostion, {
-		x: 2.246,
-		y: 0.5,
-		z: 0,
-		scrollTrigger: {
-			trigger: "#section-four",
-			start: "top bottom",
-			end: "top top",
-			scrub: true,
-			immediateRender: false,
-		},
-	});
+		.to(cameraPostion, {
+			x: 0.08,
+			y: 2.38,
+			z: 0,
+			scrollTrigger: {
+				trigger: "#section-three",
+				start: "top bottom",
+				end: "top top",
+				scrub: true,
+				immediateRender: false,
+			},
+		})
+		// BUY NOW section
+		.to(cameraPostion, {
+			x: 2.246,
+			y: 0.5,
+			z: 0,
+			scrollTrigger: {
+				trigger: "#section-four",
+				start: "top bottom",
+				end: "top top",
+				scrub: true,
+				immediateRender: false,
+			},
+		});
 };
 
 // Explore button
