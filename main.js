@@ -21,7 +21,6 @@ const closeBtn = document.querySelector("#close-btn");
 const meme = document.querySelector("#meme");
 // Scene
 const scene = new THREE.Scene();
-// group
 
 /**
  * Environment
@@ -157,6 +156,7 @@ const animate = () => {
 animate();
 
 const cameraPostion = camera.position;
+
 const scrollAnimation = () => {
 	const tl = gsap.timeline();
 	// PREMIUM BUILD section
