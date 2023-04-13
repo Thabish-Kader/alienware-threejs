@@ -5,7 +5,7 @@
 <img align="left" alt="GSAP" width="30px" style="padding-right:10px;" src="https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg" />
 <br/>
 <br/>
-[Live Demo](https://alienware-threejs.vercel.app/)
+(Live Demo)[https://alienware-threejs.vercel.app/]
 A product showcase project created with vanilla three js and GSAP.
 
 
