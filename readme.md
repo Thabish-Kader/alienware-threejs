@@ -9,6 +9,9 @@
 A product showcase project created with vanilla three js and GSAP.
 [Live Demo](https://alienware-threejs.vercel.app/)
 
+## YT
+[![Vanilla Three.js and GSAP: Create an impressive 3D product showcase web app from scratch](https://ytcards.demolab.com/?id=4iNINWmo9nw&title=Vanilla+Three.js+and+GSAP%3A+Create+an+impressive+3D+product+showcase+web+app+from+scratch&lang=en&timestamp=1683256075&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&width=250 "Vanilla Three.js and GSAP: Create an impressive 3D product showcase web app from scratch")](https://www.youtube.com/watch?v=4iNINWmo9nw)
+
 
 <img width="1680" alt="Screenshot 2023-04-09 at 1 56 16 PM" src="https://user-images.githubusercontent.com/76642519/230766956-4acde1dc-f8ff-4202-8f93-c75ec99b5359.png">
 
